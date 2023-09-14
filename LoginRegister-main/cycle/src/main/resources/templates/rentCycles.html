@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rent Cycles</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <h2>Available Cycles for Rent</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Available</th>
+                <th>Action</th>
+                                <th>Status</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cycle : ${cycleList}">
+                <td th:text="${cycle.id}"></td>
+                <td th:text="${cycle.name}"></td>
+                <td th:text="${cycle.available}"></td>
+                <td th:text="${cycle.status}"></td>
+
+                <td>
+                    <form th:action="@{/cycle/borrow/{id}(id=${cycle.id})}" method="post" class="rent-form">
+    <button type="submit" th:text="${cycle.available ? 'Rent' : 'Rented'}" th:disabled="${!cycle.available}" class="rent-button"></button>
+    <input type="hidden" name="action" value="borrow" />
+</form>
+<form th:action="@{/cycle/return/{id}(id=${cycle.id})}" method="post" class="return-form">
+    <button type="submit" th:text="${cycle.available ? 'Available' : 'Returned'}" th:disabled="${!cycle.available}" class="return-button"></button>
+    <input type="hidden" name="action" value="return" />
+</form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+     
+</body>
+</html>

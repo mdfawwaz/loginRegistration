@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Return Cycle</title>
+</head>
+<body>
+    <h2>Return Cycle</h2>
+    
+    <p th:text="${message}"></p>
+    <p th:text="${error}"></p>
+    
+    <a th:href="@{/cycle/cycle}">Back to Cycles</a>
+</body>
+</html>
